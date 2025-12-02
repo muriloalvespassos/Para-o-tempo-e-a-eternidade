@@ -71,3 +71,50 @@ header{
 @keyframes fadeIn{to{opacity:1;transform:none}}
 
 footer{display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px}
+
+
+.container{
+  width:min(820px,96%);
+  background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+  /* fundo do container com 85% de transparência -> alpha 0.15 */
+  background: rgba(255,255,255,0.15);
+  border-radius:18px;
+  box-shadow: 0 10px 30px rgba(22,22,22,0.06);
+  padding:36px;
+  display:grid;
+  gap:20px;
+  align-items:center;
+}
+
+/* mosaico de fundo que preenche toda a viewport */
+.bg-mosaic{
+  position:fixed;
+  inset:0;
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap:10px;
+  padding:10px;
+  z-index:-1;
+  pointer-events:none;
+}
+/* aplica a qualquer tile (.bg-tile ou .tile) usada no HTML */
+.bg-mosaic .bg-tile,
+.bg-mosaic .tile{
+  width:100%;
+  height:100%;
+  background-size: cover;       /* preenche o quadrado cortando quando necessário */
+  background-position: center;  /* centraliza o ponto focal da imagem */
+  background-repeat: no-repeat;
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow: 0 6px 18px rgba(22,22,22,0.06);
+  border:1px solid rgba(214,190,190,0.25);
+}
+@media (max-width:720px){
+  .bg-mosaic{ grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, 1fr); }
+}
+@media (max-width:420px){
+  .bg-mosaic{ gap:8px; padding:8px }
+}
+
